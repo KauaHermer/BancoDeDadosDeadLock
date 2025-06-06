@@ -40,23 +40,21 @@ Este projeto simula um sistema de transações concorrentes que acessam recursos
 
 ## Exemplo de Saída
 
-T3 iniciando (tentativa 1, timestamp: 2)  
-T3 tentando lock em X  
-T3 (ts:2) morre esperando X de T2  
-T3 ABORTADA  
-T3 reiniciando com novo timestamp...  
-T3 iniciando (tentativa 2, timestamp: 4)  
-T3 tentando lock em X  
-T3 obteve lock em X  
-T3 tentando lock em Y  
-T3 obteve lock em Y  
-T3 leu Y = 33  
-T3 escreveu X = 92  
-T3 escreveu Y = 1  
-T3 liberou X  
-T3 liberou Y  
-T3 COMMIT realizado  
-T3 finalizou com sucesso.
+T1 iniciando (tentativa 1, ts: 0)
+T1 tenta lock em X
+T1 obteve lock em X
+T1 leu X = 25
+T1 tenta lock em Y
+T1 obteve lock em Y
+T1 leu Y = 48
+T1 escreveu X = 35
+T1 escreveu Y = 15
+T1 liberou Y
+T1 liberou X
+T1 COMMIT realizado
+T1 finalizou com sucesso
+
+Simulação concluída.
 
 ---
 
