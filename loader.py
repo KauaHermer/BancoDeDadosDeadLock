@@ -84,7 +84,7 @@ class Sistema:
         self.timestamp = 0
         self.lock = threading.RLock()
         self.gerenciador = GerenciadorDeadlock()
-        self.parar_detector = threading.Event()
+        self.evento_parar_detector = threading.Event()
         self.thread_detector = None
 
     def novo_timestamp(self):
@@ -95,13 +95,13 @@ class Sistema:
 
     def iniciar_detector(self):
         def detector():
-            while not self.parar_detector.wait(1):
+            while not self.evento_parar_detector.wait(1):
                 self.detectar_resolver_deadlock()
         self.thread_detector = threading.Thread(target=detector, daemon=True)
         self.thread_detector.start()
 
     def parar_detector(self):
-        self.parar_detector.set()
+        self.evento_parar_detector.set()
         if self.thread_detector:
             self.thread_detector.join()
 
